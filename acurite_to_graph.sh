@@ -40,5 +40,13 @@ if [[ ! -z $INFLUX_DATABASE ]]; then
 	ARGUMENTS+=($INFLUX_DATABASE)
 fi	
 
+if [[ ! -z $NAME_FIELDS ]]; then
+	ARGUMENTS+=('-nameFields')
+	ARGUMENTS+=($NAME_FIELDS)
+fi
 
-exec /usr/local/bin/acurite_to_graph $ARGUMENTS
+echo ARGUMENTS=${ARGUMENTS[*]}
+
+printenv
+
+exec /usr/local/bin/acurite_to_graph ${ARGUMENTS[*]}
